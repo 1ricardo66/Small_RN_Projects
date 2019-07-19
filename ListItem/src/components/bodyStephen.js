@@ -16,42 +16,46 @@ class bodyStephen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            imgs: {
-                img1: {
-                    link: "https://images-na.ssl-images-amazon.com/images/I/91tIKl2eywL.jpg",
-                    name: "Outsider"
-                },
-
-                img2: {
-                    link: "https://images-na.ssl-images-amazon.com/images/I/51A3IOrcZRL._SX324_BO1,204,203,200_.jpg",
-                    name: "Pet Sematary"
-                },
-                img3: {
-                    link: "https://i.pinimg.com/originals/09/49/cb/0949cb58cad8d29b142bf4b38d4f2997.jpg",
-                    name: "Night Shift"
-                },
-                img4: {
-                    link: "https://images-na.ssl-images-amazon.com/images/I/A1eP5YuEKmL.jpg",
-                    name: "Misery"
-                },
-                img5: {
-                    link: "https://images-na.ssl-images-amazon.com/images/I/4117PWF91KL._SX320_BO1,204,203,200_.jpg",
-                    name: "IT"
-                },
-                img6: {
-                    link: "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781982108298/the-battle-of-jericho-hill-9781982108298_lg.jpg",
-                    name: "The batle of Jericho Hill"
-                },
-                img7: {
-                    link: "https://i.imgur.com/84g6sXu.jpg",
-                    name: "Stranger Tales Mad Max"
-                },
-
-            }
+            imgs: []
 
         };
     }
 
+
+    componentWillMount(){
+        this.setState({imgs:{
+            img1: {
+                link: "https://images-na.ssl-images-amazon.com/images/I/91tIKl2eywL.jpg",
+                name: "Outsider"
+            },
+
+            img2: {
+                link: "https://images-na.ssl-images-amazon.com/images/I/51A3IOrcZRL._SX324_BO1,204,203,200_.jpg",
+                name: "Pet Sematary"
+            },
+            img3: {
+                link: "https://i.pinimg.com/originals/09/49/cb/0949cb58cad8d29b142bf4b38d4f2997.jpg",
+                name: "Night Shift"
+            },
+            img4: {
+                link: "https://images-na.ssl-images-amazon.com/images/I/A1eP5YuEKmL.jpg",
+                name: "Misery"
+            },
+            img5: {
+                link: "https://images-na.ssl-images-amazon.com/images/I/4117PWF91KL._SX320_BO1,204,203,200_.jpg",
+                name: "IT"
+            },
+            img6: {
+                link: "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781982108298/the-battle-of-jericho-hill-9781982108298_lg.jpg",
+                name: "The batle of Jericho Hill"
+            },
+            img7: {
+                link: "https://i.imgur.com/84g6sXu.jpg",
+                name: "Stranger Tales Mad Max"
+            },
+
+        }})
+    }
 
     render() {
         return (
