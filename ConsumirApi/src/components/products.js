@@ -19,7 +19,7 @@ class Products extends Component {
                     <Text style={{color:"red",fontSize:17}} >Valor: {this.props.item.valor}</Text>
                     <View>
                         <TouchableOpacity style={{alignContent:"flex-end",alignSelf:"flex-end",backgroundColor:"#539ccc"}}
-                        onPress={()=>Alert.alert(`${(this.props.item.titulo)}`,"Produto Indisponivel"[{text:"Sair"}])}>
+                        onPress={()=>Alert.alert(`${(this.props.item.titulo)}`,"Produto Indisponivel",)}>
                             <Text >Comprar</Text>
                         </TouchableOpacity>
                     </View>
