@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button, ScrollView, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image,Alert } from 'react-native';
 import Axios from 'axios'
 
 class Products extends Component {
@@ -13,9 +13,16 @@ class Products extends Component {
                         source={{ uri: this.props.item.foto }}
                     />
                 </View>
-                <View >
-                    <Text >Nome:{this.props.item.titulo} </Text>
-                    <Text  >Valor: {this.props.item.valor}</Text>
+                <View style={styles.desc} >
+                    <Text style={styles.textProduct}>Nome:{this.props.item.titulo} </Text>
+                    <Text style={styles.textProduct}>Local: {this.props.item.local_anuncio}</Text>
+                    <Text style={{color:"red",fontSize:17}} >Valor: {this.props.item.valor}</Text>
+                    <View>
+                        <TouchableOpacity style={{alignContent:"flex-end",alignSelf:"flex-end",backgroundColor:"#539ccc"}}
+                        onPress={()=>Alert.alert(`${(this.props.item.titulo)}`,"Produto Indisponivel"[{text:"Sair"}])}>
+                            <Text >Comprar</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
 
@@ -31,7 +38,9 @@ const styles = StyleSheet.create({
     },
     
     desc: {
-        
+        marginLeft:5,
+        flexWrap:"nowrap",
+        flex:1
     },
     foto:{
         width:102,
@@ -41,11 +50,18 @@ const styles = StyleSheet.create({
     },
     itens:{
         flexDirection:"row",
-        borderColor:"#6600cc",
+        borderColor:"#696268",
         borderWidth:2,
         padding:2,
         margin:2,
         marginTop:10,
+    },
+    textProduct:{
+        fontSize:17,
+        fontFamily: 'arial',
+        flexDirection:"column",
+        flexWrap:"wrap"        
+
     }
 
 })
