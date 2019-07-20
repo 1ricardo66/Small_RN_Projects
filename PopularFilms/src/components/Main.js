@@ -5,8 +5,8 @@ import {
   Text,
   ScrollView
 } from 'react-native';
-import Axios from 'axios'
 import api from './popularFilms'
+import Content from './content'
 
 
 export default class Main extends Component {
@@ -28,9 +28,7 @@ export default class Main extends Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        {this.state.films.map((data)=>{
-          return(<Text key="id">{data.titulo}</Text>)
-        })}
+        <Content />
       </ScrollView>
     );
   }
