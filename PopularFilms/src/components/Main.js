@@ -10,25 +10,28 @@ import Content from './content'
 
 
 export default class Main extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      films: []
+      films: api.api
     };
   }
 
-  componentWillMount() {
+  /*componentWillMount() {
     console.log(api.api)
     this.setState({
       films:api.api
     })
-  }
+  }*/
 
   render() {
     return (
       <ScrollView style={styles.container}>
-        <Content />
+        {this.state.films.map((film)=>(<Content key={film.id} film={film}/>))}
+
+        <View>
+          <Text style={{textAlign:"center"}}>21/07/2019</Text>
+        </View>
       </ScrollView>
     );
   }
@@ -37,6 +40,6 @@ export default class Main extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    
+    backgroundColor:"#333"
   },
 });
