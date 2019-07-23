@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 # OSX
 #
 .DS_Store
-=======
-./JokenPo/android/*
->>>>>>> 099c8e68951240166be433040ba1d80323893803
 
 # Xcode
 #
@@ -61,7 +57,3 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
-
-
-JokenPo/android/*
-CsTips/src/json.js
