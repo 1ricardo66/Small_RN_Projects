@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Text, View, Button, Image, StyleSheet, StatusBar,TouchableOpacity } from 'react-native'
-import { createAppContainer, createStackNavigator,  } from 'react-navigation'
+import { Text, View, Button, Image, StyleSheet, StatusBar, TouchableOpacity } from 'react-native'
+import { createAppContainer, createStackNavigator, } from 'react-navigation'
 
 //IMGS
 const logo = require("../../imgs/Freelancer_logo.png");
@@ -18,11 +18,11 @@ export default class Home extends Component {
     render() {
         return (
 
-            <View style={{flex:1,backgroundColor:"#323"}}>
-            <StatusBar backgroundColor="#323"/>
+            <View style={{ flex: 1, backgroundColor: "#323" }}>
+                <StatusBar backgroundColor="#323" />
                 <View style={{ justifyContent: "center", flexDirection: "row" }}>
                     <Image
-                        style={{ width: 350, height: 150, marginTop: 10 }}
+                        style={{ width: 320, height: 100, marginTop: 5,marginBottom:15 }}
                         source={logo}
                         resizeMode="stretch"
                     />
@@ -30,7 +30,7 @@ export default class Home extends Component {
                 </View>
                 <View style={styles.viewButton}>
                     <TouchableOpacity
-                        onPress={()=>this.props.navigation.navigate("Cliente")}
+                        onPress={() => this.props.navigation.navigate("Cliente")}
                     >
                         <Image
                             style={styles.image}
@@ -38,10 +38,14 @@ export default class Home extends Component {
                         />
                     </TouchableOpacity>
 
-                    <Image
-                        style={styles.image}
-                        source={menuContato}
-                    />
+                    <TouchableOpacity
+                        onPress={()=>this.props.navigation.navigate("Contato")}
+                    >
+                        <Image
+                            style={styles.image}
+                            source={menuContato}
+                        />
+                    </TouchableOpacity>
 
                 </View>
 
@@ -65,10 +69,10 @@ Home.navigationOptions = {
     title: "Home",
     headerTintColor: 'black',
     headerTitleStyle: {
-      fontWeight: 'bold',
+        fontWeight: 'bold',
     },
-    headerStyle:{
-        backgroundColor:"#323",
+    headerStyle: {
+        backgroundColor: "#323",
     }
 }
 
@@ -79,9 +83,9 @@ const styles = StyleSheet.create({
 
     },
     image: {
-        width: 150,
-        height: 150,
+        width: 130,
+        height: 130,
         margin: 10,
-        
+
     }
 })
