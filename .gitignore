@@ -65,3 +65,10 @@ buck-out/
 
 JokenPo/android/*
 CsTips/src/json.js
+
+
+
+#FirebaseApp
+
+StartingWithFirebase/fireConfig.js
+

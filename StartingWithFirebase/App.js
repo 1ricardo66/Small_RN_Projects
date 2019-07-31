@@ -1,114 +1,83 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import firebase from 'firebase'
+import React, { Component } from 'react'
+import { View, Text, Button, TextInput, StyleSheet } from 'react-native'
+import fireConfig from './fireConfig'
+export default class App extends Component {
+  constructor() {
+    super();
+    this.state = { msg: "", userName: "" }
+  }
+  componentWillMount() {
+    var firebaseConfig = fireConfig.config
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
 
-import React, {Fragment} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+  }
+  salvarDados() {
+    const nome = this.state.userName;
+    const time = new Date().getHours() + ":" + new Date().getMinutes();
+    const msg = this.state.msg;
+    if (nome != "" && msg != "") {
+      var database = firebase.database().ref("funcionarios");
+      database.push().set({
+        nome: nome,
+        texto: msg,
+        time
+      })
+      this.setState({
+        msg: "", userName: ""
+      })
 
-const App = () => {
-  return (
-    <Fragment>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </Fragment>
-  );
-};
+      alert("Sended...")
+    } else {
+      alert("Type your name and the message!!")
+    }
+  }
+
+  atualizaValor(nome, valor) {
+    const obj = {};
+    obj[nome] = valor;
+    this.setState(obj)
+  }
+  render() {
+    return (
+      <View style={{ flex: 1, backgroundColor: "#e4b5b2" }}>
+        <Text>Type your Message</Text>
+
+        <TextInput
+          value={this.state.userName}
+          placeholder="Type your name Here "
+          onChangeText={(name) => this.atualizaValor("userName", name)}
+          underlineColorAndroid="#c62168"
+        />
+
+        <TextInput style={styles.input}
+          value={this.state.msg}
+          onChangeText={(msg) => this.atualizaValor("msg", msg)}
+          underlineColorAndroid="#c62168"
+          placeholder="Type Your message here "
+        />
+        <Button
+          title="Firebase"
+          onPress={() => this.salvarDados()}
+        />
+
+        <View style={{ flex: 0.5 }}>
+        
+        </View>
+      </View>
+    )
+  }
+}
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+  input: {
+    paddingRight: 10,
+    lineHeight: 10,
+    flex: 0.3,
+    marginTop: 50,
+    color: "#c62168",
+    textAlignVertical: 'top'
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
-
-export default App;
+})
