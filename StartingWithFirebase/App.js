@@ -5,7 +5,7 @@ import fireConfig from './fireConfig'
 export default class App extends Component {
   constructor() {
     super();
-    this.state = { msg: "", userName: "" }
+    this.state = { msg: "", userName: "",texto:"" }
   }
   componentWillMount() {
     var firebaseConfig = fireConfig.config
@@ -29,7 +29,7 @@ export default class App extends Component {
         msg: "", userName: ""
       })
 
-      alert("Sended...")
+      //alert("Sended...")
     } else {
       alert("Type your name and the message!!")
     }
@@ -40,8 +40,18 @@ export default class App extends Component {
     obj[nome] = valor;
     this.setState(obj)
   }
+
+  listar(){
+    const funcionario = firebase.database().ref("funcionarios").child("teste");
+    funcionario.on("value",(snapshot)=>{
+      this.setState({
+        texto:snapshot.val()
+      })
+    })
+  }
   render() {
     return (
+      
       <View style={{ flex: 1, backgroundColor: "#e4b5b2" }}>
         <Text>Type your Message</Text>
 
@@ -65,6 +75,11 @@ export default class App extends Component {
 
         <View style={{ flex: 0.5 }}>
         
+        <Button
+          title="asasa"
+          onPress={()=>this.listar()}
+        />
+        <Text>{this.state.texto}</Text>
         </View>
       </View>
     )
