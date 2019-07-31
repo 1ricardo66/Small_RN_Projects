@@ -8,9 +8,9 @@ export default class Visor extends Component{
         return (
             <View>
                 <TextInput
-                    placeholder="Resultado"
+                    placeholder={this.props.resultado}
                     editable={false}
-                    style={{ height: 70, fontSize: 21 }}
+                    style={{ height: 70, fontSize: 21, textAlign:"center" }}
                 />
             </View>
         )

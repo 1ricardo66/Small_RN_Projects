@@ -3,7 +3,7 @@ import {View,Text} from 'react-native'
 import Visor from './visor'
 const Resultado = props =>
     <View>
-        <Visor />
+        <Visor resultado={props.resultado}/>
     </View>
 
 export {Resultado};
