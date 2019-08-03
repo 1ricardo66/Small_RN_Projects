@@ -2,10 +2,11 @@ import firebase from 'firebase'
 import React, { Component } from 'react'
 import { View, Text, Button, TextInput, StyleSheet } from 'react-native'
 import fireConfig from './fireConfig'
+import Men from './msg'
 export default class App extends Component {
   constructor() {
     super();
-    this.state = { msg: "", userName: "",texto:"" }
+    this.state = { msg: "", userName: "", texto: "" }
   }
   componentWillMount() {
     var firebaseConfig = fireConfig.config
@@ -41,17 +42,18 @@ export default class App extends Component {
     this.setState(obj)
   }
 
-  listar(){
-    const funcionario = firebase.database().ref("funcionarios").child("teste");
-    funcionario.on("value",(snapshot)=>{
-      this.setState({
-        texto:snapshot.val()
-      })
+   listar() {
+    const funcionario = firebase.database().ref("funcionarios/");
+    //funcionario.on("value",(snapshot)=>{
+    funcionario.on("child_added",(data,prevKey)=>{
+      var newFunc = data.val();
+      this.setState({texto:newFunc.nome +": "+newFunc.texto})
     })
+    //})
   }
   render() {
     return (
-      
+
       <View style={{ flex: 1, backgroundColor: "#e4b5b2" }}>
         <Text>Type your Message</Text>
 
@@ -74,11 +76,11 @@ export default class App extends Component {
         />
 
         <View style={{ flex: 0.5 }}>
-        
-        <Button
-          title="asasa"
-          onPress={()=>this.listar()}
-        />
+
+          <Button
+            title="asasa"
+            onPress={() => this.listar()}
+          />
         <Text>{this.state.texto}</Text>
         </View>
       </View>
