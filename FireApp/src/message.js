@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet,Alert } from 'react-native'
 import Icon from "react-native-vector-icons/FontAwesome"
 import { Input } from 'react-native-elements'
 import Key from './components/fireKey'
@@ -30,6 +30,39 @@ export default class Message extends Component {
         var name = this.state.name;
         var tel = this.state.tel;
         var msg = this.state.msg;
+        
+        if(name != "" && msg != ""){
+            var database = firebase.database().ref("messages");
+            database.push().set({
+                nome:name,
+                telefone:tel,
+                mensagem:msg,
+            })
+
+            this.setState({
+                name:"",
+                tel:"",
+                msg:""
+            })
+            
+            Alert.alert(
+                "Sucesso",
+                "Obrigado pelo feedback, sua mensagem foi enviada com sucesso!!",
+                [{text:"Ok"}],
+                {cancelable:false}
+            )
+
+        }else{
+            Alert.alert(
+                "Erro",
+                "É necessário inserir um nome e sua mensagem!!",
+                [{text:"Ok"}],
+                {cancelable:false}
+            )
+        }
+
+        
+
     }
     render() {
         //const Message = (props)=>{
@@ -44,7 +77,8 @@ export default class Message extends Component {
                 />
 
                 <Input
-                    placeholder="Insira seu contato (Opcional) +XX(XX)XXXXXXXXX"
+                    placeholder="Insira seu contato (Opcional)"
+                    placehold
                     keyboardType="phone-pad"
                     maxLength={16}
                     value={this.state.tel}
@@ -61,8 +95,9 @@ export default class Message extends Component {
                     <Icon 
                         name="paper-plane"
                         size={25}
-                        color="blue"
+                        color="#333"
                         style={{margin:"10%"}}
+                        onPress={()=>this.sendMessage()}
                     />
                 </View>
             </View>

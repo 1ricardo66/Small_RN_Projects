@@ -75,7 +75,8 @@ App.navigationOptions={
 const styles = StyleSheet.create({
     filmTitle:{
         fontSize:17,
-        color:"red",
-        textAlign:"center"
+        color:"#ff2c1c",
+        textAlign:"center",
+        fontStyle:"italic"
     }
 })

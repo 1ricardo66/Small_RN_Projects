@@ -72,3 +72,6 @@ CsTips/src/json.js
 
 StartingWithFirebase/fireConfig.js
 
+#FireApp
+
+FireApp/src/components/fireKey.js
